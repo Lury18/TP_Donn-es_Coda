@@ -1,10 +1,17 @@
-# PMD — Jour 1 : Fondations (environnement & NumPy)
+# PMD — Notebooks de séance (environnement, pandas, nettoyage)
 
-Projet du module **Préparation et Manipulation de Données** (M1), séance 1 :
-mise en place d'un environnement Python reproductible et manipulation de
-tableaux NumPy (slicing, masques booléens, statistiques par axe,
-vectorisation). Le notebook `01_environnement_numpy.ipynb` contient le TP
-complété (ateliers 1.1 à 1.3).
+Projets du module **Préparation et Manipulation de Données** (M1) :
+
+- **Séance 1 — Fondations** (`01_environnement_numpy.ipynb`) : mise en place d'un
+  environnement Python reproductible et manipulation de tableaux NumPy (slicing,
+  masques booléens, statistiques par axe, vectorisation).
+- **Séance 2 — Exploration pandas** (`02_pandas_exploration.ipynb`) : lecture de
+  sources multiples (CSV/Excel/JSON), sélection/filtrage avec `loc`/`iloc`, et
+  écriture de la fonction réutilisable `profile_dataframe` (`src/exploration.py`).
+- **Séance 3 — Nettoyage et qualité** (`03_nettoyage_qualite.ipynb`) : typologie
+  des valeurs manquantes, détection des valeurs aberrantes (IQR vs score z),
+  normalisation de texte et écriture de la fonction idempotente `clean_sales`
+  (`src/cleaning.py`).
 
 ## Installation
 
