@@ -1,4 +1,4 @@
-# PMD — Notebooks de séance (environnement, pandas, nettoyage, transformation)
+# PMD — Notebooks de séance (environnement, pandas, nettoyage, transformation, temps)
 
 Projets du module **Préparation et Manipulation de Données** (M1) :
 
@@ -16,12 +16,17 @@ Projets du module **Préparation et Manipulation de Données** (M1) :
   mise à l'échelle (min-max, z-score), fuite de données, encodage one-hot avec
   regroupement des modalités rares, variables dérivées, et fonction
   `prepare_features` (`src/transformation.py`).
+- **Séance 5 — Variables temporelles** (`05_variables_temporelles.ipynb`) : parsing
+  de dates hétérogènes avec rapport de conversion, variables calendaires,
+  rééchantillonnage et moyennes mobiles, détection de pannes et de capteurs
+  bloqués, saisonnalité mensuelle (`src/temporal.py`).
 
 ## Structure du dépôt
 
-- `src/` : code réutilisable (`exploration.py`, `cleaning.py`, `transformation.py`).
+- `src/` : code réutilisable (`exploration.py`, `cleaning.py`, `transformation.py`,
+  `temporal.py`).
 - `data/processed/` : jeux produits par les notebooks (`ventes_nettoyees.parquet`,
-  `journal_nettoyage.json`, `ventes_transformees.parquet`).
+  `journal_nettoyage.json`, `ventes_transformees.parquet`, `ventes_temporelles.parquet`).
 - `requirements.txt` : dépendances figées.
 
 ## Installation
