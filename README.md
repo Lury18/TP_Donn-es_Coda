@@ -1,4 +1,4 @@
-# PMD — Notebooks de séance (environnement, pandas, nettoyage, transformation, temps)
+# PMD — Notebooks de séance (environnement, pandas, nettoyage, transformation, temps, jointures)
 
 Projets du module **Préparation et Manipulation de Données** (M1) :
 
@@ -20,13 +20,22 @@ Projets du module **Préparation et Manipulation de Données** (M1) :
   de dates hétérogènes avec rapport de conversion, variables calendaires,
   rééchantillonnage et moyennes mobiles, détection de pannes et de capteurs
   bloqués, saisonnalité mensuelle (`src/temporal.py`).
+- **Séance 6 — Agrégation et jointures** (`06_agregation_jointures.ipynb`) :
+  `agg`/`transform`/`apply`, tableaux croisés, jointures contrôlées (`validate`,
+  `safe_merge`), formats long et large, modèle en étoile pour la BI et contrôle
+  d'intégrité référentielle (`src/joins.py`).
 
 ## Structure du dépôt
 
 - `src/` : code réutilisable (`exploration.py`, `cleaning.py`, `transformation.py`,
-  `temporal.py`).
+  `temporal.py`, `joins.py`).
 - `data/processed/` : jeux produits par les notebooks (`ventes_nettoyees.parquet`,
   `journal_nettoyage.json`, `ventes_transformees.parquet`, `ventes_temporelles.parquet`).
+- `data/processed/star/` : modèle en étoile pour Power BI / Tableau (`fact_sales`,
+  `dim_date`, `dim_customer`, `dim_product`, `dim_store`).
+- `docs/schema_etoile.png` (et `.svg`) : schéma du modèle en étoile.
+
+![Modèle en étoile](docs/schema_etoile.png)
 - `requirements.txt` : dépendances figées.
 
 ## Installation
