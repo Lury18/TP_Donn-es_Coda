@@ -1,0 +1,9 @@
+{
+  "lignes_initiales": 17609,
+  "doublons_stricts_supprimes": 240,
+  "lignes_sans_date_supprimees": 347,
+  "remise_pct_imputee_zero": 1874,
+  "quantites_negatives_supprimees": 30,
+  "quantites_hors_plafond_supprimees": 0,
+  "lignes_finales": 16992
+}

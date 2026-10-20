@@ -1,0 +1,25 @@
+{
+  "interventions": {
+    "lignes_initiales": 17150,
+    "montants_textuels_convertis": 1122,
+    "montants_nan_eur_deguises": 75,
+    "doublons_stricts_supprimes": 150,
+    "lignes_sans_date_supprimees": 340,
+    "durees_negatives_mises_a_vide": 27,
+    "durees_24h_signalees": 41,
+    "km_sentinelle_mis_a_vide": 177,
+    "montants_manquants_signales": 1333,
+    "montants_manquants_dans_la_source": 1292,
+    "lignes_finales": 16660
+  },
+  "clients": {
+    "lignes_initiales": 2400,
+    "ages_impossibles_mis_a_vide": 131,
+    "ages_imputes_mediane_segment": 251,
+    "lignes_finales": 2400
+  },
+  "prestations": {
+    "lignes_initiales": 95,
+    "couts_imputes": 2
+  }
+}

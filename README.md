@@ -1,0 +1,82 @@
+# PMD — Notebooks de séance (environnement, pandas, nettoyage, transformation, temps, jointures)
+
+Projets du module **Préparation et Manipulation de Données** (M1) :
+
+- **Séance 1 — Fondations** (`Notebook/01_environnement_numpy.ipynb`) : mise en place d'un
+  environnement Python reproductible et manipulation de tableaux NumPy (slicing,
+  masques booléens, statistiques par axe, vectorisation).
+- **Séance 2 — Exploration pandas** (`Notebook/02_pandas_exploration.ipynb`) : lecture de
+  sources multiples (CSV/Excel/JSON), sélection et filtrage avec `loc`/`iloc`, et
+  écriture de la fonction réutilisable `profile_dataframe` (`src/exploration.py`).
+- **Séance 3 — Nettoyage et qualité** (`Notebook/03_nettoyage_qualite.ipynb`) : typologie
+  des valeurs manquantes, détection des valeurs aberrantes (IQR vs score z),
+  normalisation de texte et écriture de la fonction idempotente `clean_sales`
+  (`src/cleaning.py`).
+- **Séance 4 — Transformation et encodage** (`Notebook/04_transformation_encodage.ipynb`) :
+  mise à l'échelle (min-max, z-score), fuite de données, encodage one-hot avec
+  regroupement des modalités rares, variables dérivées, et fonction
+  `prepare_features` (`src/transformation.py`).
+- **Séance 5 — Variables temporelles** (`Notebook/05_variables_temporelles.ipynb`) : parsing
+  de dates hétérogènes avec rapport de conversion, variables calendaires,
+  rééchantillonnage et moyennes mobiles, détection de pannes et de capteurs
+  bloqués, saisonnalité mensuelle (`src/temporal.py`).
+- **Séance 6 — Agrégation et jointures** (`Notebook/06_agregation_jointures.ipynb`) :
+  `agg`/`transform`/`apply`, tableaux croisés, jointures contrôlées (`validate`,
+  `safe_merge`), formats long et large, modèle en étoile pour la BI et contrôle
+  d'intégrité référentielle (`src/joins.py`).
+- **Séance 7 — Introduction à PySpark** (`Notebook/07_pyspark.ipynb`) : session Spark et
+  schéma explicite, nettoyage des ventes rejoué en PySpark, agrégations, jointures
+  (broadcast) et écriture Parquet partitionnée, comparaison chiffrée Pandas / Spark.
+  Pipeline autonome `src/spark_pipeline.py`, exécutable avec `spark-submit`.
+- **Séance 9 — Projet : garage automobile, groupe 4** (`Notebook/09_projet_canevas.ipynb`) :
+  diagnostic chiffré des anomalies, nettoyage idempotent (`src/garage.py`), modèle en étoile
+  dans `data/processed/garage/star/`, composant PySpark (`src/garage_spark.py`) et planche
+  de synthèse (`docs/garage_planche.png`). Données du groupe dans
+  `data/projets/groupe_04_garage/`.
+
+## Structure du dépôt
+
+- `Notebook/` : les notebooks de séance (TP1 à TP7) et le projet (09), à exécuter dans l'ordre.
+- `src/` : code réutilisable (`exploration.py`, `cleaning.py`, `transformation.py`,
+  `temporal.py`, `joins.py`, `spark_pipeline.py`, `check_pyspark.py`, `garage.py`,
+  `garage_spark.py`).
+- `data/processed/` : jeux produits par les notebooks (`ventes_nettoyees.parquet`,
+  `journal_nettoyage.json`, `ventes_transformees.parquet`, `ventes_temporelles.parquet`).
+- `data/processed/star/` : modèle en étoile pour Power BI / Tableau (`fact_sales`,
+  `dim_date`, `dim_customer`, `dim_product`, `dim_store`).
+- `docs/schema_etoile.png` (et `.svg`) : schéma du modèle en étoile.
+
+![Modèle en étoile](docs/schema_etoile.png)
+- `requirements.txt` : dépendances figées.
+
+## Installation
+
+```bash
+python -m venv .venv
+source .venv/bin/activate        # Windows : .venv\Scripts\activate
+pip install -r requirements.txt
+jupyter lab
+```
+
+## Données
+
+Le dossier `data/raw/` (exclu du dépôt via `.gitignore`) contient les données
+brutes en lecture seule ; toute transformation est écrite dans
+`data/processed/`, jamais dans `data/raw/`.
+
+## Séance 7 : PySpark
+
+PySpark demande Java (JDK 17 recommandé). Vérifier l'installation, puis générer le
+fichier volumineux (environ 300 Mo, non versionné) :
+
+```bash
+python src/check_pyspark.py
+python src/generate_data.py --big 5000000
+```
+
+Le pipeline écrit `data/processed/evenements_spark/` (Parquet partitionné par
+catégorie, exclu du dépôt car régénérable) :
+
+```bash
+spark-submit src/spark_pipeline.py
+```
