@@ -3,3 +3,5 @@ data/raw/
 __pycache__/
 .ipynb_checkpoints/
 .DS_Store
+data/processed/evenements_spark/
+data/processed/garage/interventions_spark/

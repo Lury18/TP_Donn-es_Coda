@@ -24,12 +24,22 @@ Projets du module **Préparation et Manipulation de Données** (M1) :
   `agg`/`transform`/`apply`, tableaux croisés, jointures contrôlées (`validate`,
   `safe_merge`), formats long et large, modèle en étoile pour la BI et contrôle
   d'intégrité référentielle (`src/joins.py`).
+- **Séance 7 — Introduction à PySpark** (`Notebook/07_pyspark.ipynb`) : session Spark et
+  schéma explicite, nettoyage des ventes rejoué en PySpark, agrégations, jointures
+  (broadcast) et écriture Parquet partitionnée, comparaison chiffrée Pandas / Spark.
+  Pipeline autonome `src/spark_pipeline.py`, exécutable avec `spark-submit`.
+- **Séance 9 — Projet : garage automobile, groupe 4** (`Notebook/09_projet_canevas.ipynb`) :
+  diagnostic chiffré des anomalies, nettoyage idempotent (`src/garage.py`), modèle en étoile
+  dans `data/processed/garage/star/`, composant PySpark (`src/garage_spark.py`) et planche
+  de synthèse (`docs/garage_planche.png`). Données du groupe dans
+  `data/projets/groupe_04_garage/`.
 
 ## Structure du dépôt
 
-- `Notebook/` : les notebooks de séance (TP1 à TP6), à exécuter dans l'ordre.
+- `Notebook/` : les notebooks de séance (TP1 à TP7) et le projet (09), à exécuter dans l'ordre.
 - `src/` : code réutilisable (`exploration.py`, `cleaning.py`, `transformation.py`,
-  `temporal.py`, `joins.py`).
+  `temporal.py`, `joins.py`, `spark_pipeline.py`, `check_pyspark.py`, `garage.py`,
+  `garage_spark.py`).
 - `data/processed/` : jeux produits par les notebooks (`ventes_nettoyees.parquet`,
   `journal_nettoyage.json`, `ventes_transformees.parquet`, `ventes_temporelles.parquet`).
 - `data/processed/star/` : modèle en étoile pour Power BI / Tableau (`fact_sales`,
@@ -53,3 +63,20 @@ jupyter lab
 Le dossier `data/raw/` (exclu du dépôt via `.gitignore`) contient les données
 brutes en lecture seule ; toute transformation est écrite dans
 `data/processed/`, jamais dans `data/raw/`.
+
+## Séance 7 : PySpark
+
+PySpark demande Java (JDK 17 recommandé). Vérifier l'installation, puis générer le
+fichier volumineux (environ 300 Mo, non versionné) :
+
+```bash
+python src/check_pyspark.py
+python src/generate_data.py --big 5000000
+```
+
+Le pipeline écrit `data/processed/evenements_spark/` (Parquet partitionné par
+catégorie, exclu du dépôt car régénérable) :
+
+```bash
+spark-submit src/spark_pipeline.py
+```
